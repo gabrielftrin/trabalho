@@ -1,5 +1,5 @@
-#include #include <string.h>
-#include <stdlib.h> #include
+#include <string.h>
+#include <stdlib.h>
 
 /*
 1- ler n na chamada do programa e cria vetor de tamanho
