@@ -1,58 +1,26 @@
-#include <string.h>
-#include <stdlib.h>
-
-/*
-1- ler n na chamada do programa e cria vetor de tamanho
-2- gera números aleatorios para vetor[n] (entre 0-100)
-3- pesquisa sequencial
-4- ordena vetor
-5- pesquisa binaria
-6- calcular tempo de busca seq e busca bin
-*/
+#include <iostream>
 
 using namespace std;
-//fazer alguns ajustes af
-
-/*
-Função que gera números aleatórios
-
-Parâmetros:
-vet[] = vetor de inteiros
-tamVetor = tamanho do vetor
-*/
 
 void geraNumerosRandomicos(int vet[], int tamVetor)
 {
-	int i; //std::rand(); for (i = 0; i < tamVetor; i++){ cout<<"Os valores aleatorio gerados sao: ";
-	vet[i] = 1 + rand() % 100; // Gera valores aleatórios entre 0 e 100 cout<<endl; cout<<endl; } }
-
-	/* Função que faz busca sequencial
-	E imprime o tempo gasto na operação
-	Parâmetros:
-	vet[] = vetor de inteiros
-	tamVetor = tamanho do vetor
-	*/
+	int i;
+	vet[i] = 1 + rand() % 100;
 }
-
+/*
 void buscaSequencial(int vet[], int tamVet)
 {
-	clock_t tempo; // Variavel do tempo tempo = clock(); // Tempo inicial
+	clock_t tempo;
 	int i, buscaNum;
 
-	cout << ("BUSCA SEQUENCIAL\n") << endl; cout << ("Digite o numero que deseja buscar: ") << endl; cin >> buscaNum; //scanf("%i", &buscaNum);
+	cout << ("BUSCA SEQUENCIAL\n") << endl; cout << ("Digite o numero que deseja buscar: ") << endl; cin >> buscaNum;
 
 	i = 0; while ((i < tamVet) && (vet[i] != buscaNum)) i++;
 
-	if (vet[i] == buscaNum) cout << ("Número encontrado na posição %i\n", buscaNum, i) << endl; else cout << ("Número não encontrado", buscaNum) << endl;
+	if (vet[i] == buscaNum) cout << ("Número encontrado na posição %i\n", buscaNum, i) << endl;
+	else cout << ("Número não encontrado", buscaNum) << endl;
 
-	cout << ("Tempo de execucao da busca sequencial foi:", (clock() - tempo) / (double)CLOCKS_PER_SEC) << endl; // Tempo final }
-
-	/*
-	Função que ordena vetor usando inserção (insert-short)
-	Parâmetros:
-	vet[] = vetor de inteiros
-	tamVetor = tamanho do vetor
-	*/
+	cout << ("Tempo de execucao da busca sequencial foi:", (clock() - tempo) / (double)CLOCKS_PER_SEC) << endl;
 }
 
 void ordenaVetor(int vet[], int tamVetor)
@@ -74,18 +42,11 @@ void ordenaVetor(int vet[], int tamVetor)
 	}
 }
 
-/*
-Função que faz busca binária
-E imprime o tempo gasto na operação
-Parâmetros:
-vet[] = vetor de inteiros
-tamVetor = tamanho do vetor */
-
 void buscaBinaria(int vet[], int tamVetor)
 {
-	clock_t tempo; // Variavel do tempo tempo = clock(); // Tempo inicial
+	clock_t tempo;
 
-	int limiteInf = 0; // limite inferior int limiteSup = tamVetor; // limite superior int meio = 0; int buscaNum;
+	int limiteInf = 0;
 
 	cout << ("BUSCA BINARIA\n") << endl; cout << ("Digite o número que deseja buscar: ") << endl; cin >> buscaNum;
 
@@ -102,14 +63,8 @@ void buscaBinaria(int vet[], int tamVetor)
 	cout << ("chegou aqui\n") << endl; if (vet[meio] == buscaNum) cout << ("Número %i encontrado na posição %i\n", buscaNum, meio) << endl; else cout << ("Número %i não encontrado\n", buscaNum) << endl;
 
 	cout << ("Tempo de exec. da busca binária foi: segs\n\n", (clock() - tempo) / (double)CLOCKS_PER_SEC) << endl; // sTempo final }
-
-	/*
-	Função que exibe vetor
-	Parâmetros:
-	vet[] = vetor de inteiros
-	tamVetor = tamanho do vetor
-	*/
 }
+*/
 
 void exibeVetor(int vet[], int tamVetor)
 {
@@ -119,47 +74,50 @@ void exibeVetor(int vet[], int tamVetor)
 	cout << ("\n\n");
 }
 
-/* Função que exibe menu e retorna opção */
-
 int opcaoMenu()
 {
 	int opcao;
-	cout << ("\nMENU\n------------------------------------\n") << endl; cout << ("1 - Pesquisa sequencial\n") << endl;
-	cout << ("2 - Pesquisa binaria\n") << endl; cout << ("3 - Exibir vetor\n") << endl; cout << ("0 - Sair\n") << endl;
-	cout << ("Digite a opcao: ") << endl;
-	//cout<<("opcao")<<endl; cout<<("\n-----------------------------------------\n");
+
+	cout << "\nMENU\n------------------------------------\n" << endl;
+	cout << "1 - Pesquisa sequencial" << endl;
+	cout << "2 - Pesquisa binaria" << endl;
+	cout << "3 - Exibir vetor" << endl;
+	cout << "0 - Sair\n" << endl;
+	cout << "Digite a opcao: " << endl;
+
+	cin >> opcao;
 
 	return opcao;
 }
 
-// Recebe parâmetro do tamanho do vetor na chamada do programa int n = atoi(argv[1]); // Converte o parâmetro d tamanho do vetor para inteiro
 int main(int argc, char* argv[])
 {
-	
+	//int vetor[n];
+	int opcao = -1;
 
-	int vetor[n];                       // Cria um vetor de tamanhon n
+	//geraNumerosRandomicos(vetor, n);
+	//ordenaVetor(vetor, n);
 
-	geraNumerosRandomicos(vetor, n);    // Gera números aleatórios
-	ordenaVetor(vetor, n);              // Ordena vetor
+	do
+	{
+		switch (opcaoMenu())
+		{
 
-	while (1) {               			// Este laço executa até que opção seja sair
-		switch (opcaoMenu()) {
-		case 1: {
-			buscaSequencial(vetor, n); // Opção 1
+		case 1:
+			//buscaSequencial(vetor, n);
 			break;
-		}
-		case 2: {
-			buscaBinaria(vetor, n);    // Opção 2
+		case 2:
+			//buscaBinaria(vetor, n);
 			break;
-		}
-		case 3: {
-			exibeVetor(vetor, n);      // Opção 3
+		case 3:
+			//exibeVetor(vetor, n);
 			break;
+		default:
+			return 0;
+
 		}
-		default: {                     // Qualquer opção diferente de 1, 2 ou 3
-			return 0;                  // Sai do while
-		}
-		}
-	}
-	return 0;			                   // Encerra programa
+
+	} while (opcao != 0);
+
+	return 0;
 }
