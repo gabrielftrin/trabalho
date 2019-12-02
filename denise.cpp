@@ -35,12 +35,18 @@ void buscaSequencial(int tamanho) {
 	cin >> valorBusca;
 
 
+	struct timeval tempoDeExecucao;
+
+	//gettimeofday(&tempoDeExecucao, NULL);
+
+	//cout >> retorno;
+
 	/*
-	int i, valorBusca, achou = 0;
+		achou = 0;
 	struct timeval tv1, tv2;
 	double t1, t2;
 
-	
+
 	// recupera o tempo inicial -
 	gettimeofday(&tv1, NULL);
 	t1 = (double)(tv1.tv_sec) + (double)(tv1.tv_usec) / 1000000.00;
@@ -131,11 +137,34 @@ int main()
 
 	//Solicitar tamanho do vetor
 	cout << "Tamanho do vetor: ";
-	cin >> tamanhoDoVetor;
+	//	cin >> tamanhoDoVetor;
 
-	//Realizar as operações e imprimir resultado na tela
-	buscaSequencial(tamanhoDoVetor);
-	//buscaBinaria(tamanhoDoVetor);
+		//Realizar as operações e imprimir resultado na tela
+		//buscaSequencial(tamanhoDoVetor);
+		//buscaBinaria(tamanhoDoVetor);
+
+	struct timezone zona;
+	struct timeval tempo;
+	double tInicio;
+	double tFim;
+	int i;
+
+
+	gettimeofday(&tempo, &zona);
+
+	tInicio = tempo.tv_sec + (tempo.tv_usec / 1000000.0);
+
+	for (i = 0; i < 4; i++)
+		printf("Mostra algo na tela!!!\n");
+
+	//gettimeofday(&utime, NULL);
+
+	tFim = tempo.tv_sec + (tempo.tv_usec / 1000000.0);
+
+	printf("%.4lf - Tempo percorrido\n", tFim - tInicio);
+
+
+
 
 	return 0;
 }
