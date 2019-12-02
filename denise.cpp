@@ -1,6 +1,37 @@
+/*
+vetor de elementos inteiros de tamanho N
+a ser especificado na linha de comando
+
+o vetor de tamanho N deve ser gerado aleatoriamente, com valores entre 0 e 100
+
+Para implementar a pesquisa binária, o programa deve, primeiro, ordenar o vetor.
+Para tanto, pode ser usado qualquer algoritmo de ordenação.
+
+Os programas devem calcular e mostrar os tempos de execução da
+busca sequencial e da
+busca binária
+*/
+
 #include <iostream>
 
 using namespace std;
+
+void buscaSequencial(int tamanho) {
+
+	//Criar vetor de elementos
+	int vetorDeElementos[tamanho];
+
+	srand(tamanho);
+	for (int i = 0; i < tamanho; i++)
+	{
+		vetorDeElementos[i] = rand() % 100;
+	}
+
+}
+
+void buscaBinaria() {
+
+}
 
 void geraNumerosRandomicos(int vet[], int tamVetor)
 {
@@ -68,56 +99,27 @@ void buscaBinaria(int vet[], int tamVetor)
 
 void exibeVetor(int vet[], int tamVetor)
 {
-	int i; cout << ("\nExibe vetor\n") << endl; for (i = 0; i < tamVetor; i++)
+	int i;
+	cout << ("\nExibe vetor\n") << endl;
+	for (i = 0; i < tamVetor; i++)
 		cout << (vet[i]) << endl;
 
 	cout << ("\n\n");
 }
 
-int opcaoMenu()
+//O valor lido deve ser um inteiro maior que zero
+int main()
 {
-	int opcao;
+	//Declarar tamanho do vetor
+	int tamanhoDoVetor = -1;
 
-	cout << "\nMENU\n------------------------------------\n" << endl;
-	cout << "1 - Pesquisa sequencial" << endl;
-	cout << "2 - Pesquisa binaria" << endl;
-	cout << "3 - Exibir vetor" << endl;
-	cout << "0 - Sair\n" << endl;
-	cout << "Digite a opcao: " << endl;
+	//Solicitar tamanho do vetor
+	cout << "Tamanho do vetor: ";
+	cin >> tamanhoDoVetor;
 
-	cin >> opcao;
-
-	return opcao;
-}
-
-int main(int argc, char* argv[])
-{
-	//int vetor[n];
-	int opcao = -1;
-
-	//geraNumerosRandomicos(vetor, n);
-	//ordenaVetor(vetor, n);
-
-	do
-	{
-		switch (opcaoMenu())
-		{
-
-		case 1:
-			//buscaSequencial(vetor, n);
-			break;
-		case 2:
-			//buscaBinaria(vetor, n);
-			break;
-		case 3:
-			//exibeVetor(vetor, n);
-			break;
-		default:
-			return 0;
-
-		}
-
-	} while (opcao != 0);
+	//Realizar as operações e imprimir resultado na tela
+	buscaSequencial(tamanhoDoVetor);
+	buscaBinaria(tamanhoDoVetor);
 
 	return 0;
 }
