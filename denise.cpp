@@ -13,6 +13,7 @@ busca binária
 */
 
 #include <iostream>
+#include <sys/time.h>
 
 using namespace std;
 
@@ -24,20 +25,45 @@ void buscaSequencial(int tamanho) {
 	srand(tamanho);
 	for (int i = 0; i < tamanho; i++)
 	{
+		//Gerar números entre 0 e 100
 		vetorDeElementos[i] = rand() % 100;
 	}
 
+	int valorBusca = -1;
+
+	cout << "Busca sequencial. Informe o valor: ";
+	cin >> valorBusca;
+
+
+	/*
+	int i, valorBusca, achou = 0;
+	struct timeval tv1, tv2;
+	double t1, t2;
+
+	
+	// recupera o tempo inicial -
+	gettimeofday(&tv1, NULL);
+	t1 = (double)(tv1.tv_sec) + (double)(tv1.tv_usec) / 1000000.00;
+	for (i = 0; i < TAMANHO; i++) {
+		if (vetorDados[i] == valorBusca) {
+			cout << "Valor encontrado na posicao: " << i << endl;
+			achou = 1; break;
+		} // if
+	} // for
+	// recupera o tempo final -
+	gettimeofday(&tv2, NULL);
+	t2 = (double)(tv2.tv_sec) + (double)(tv2.tv_usec) / 1000000.00;
+	// calcula e imprime o tempo total de execucao
+	printf("\nO tempo de execucao foi: %lf\n", (t2 - t1));
+	if (!achou) cout << "Valor nao encontrado!\n" << endl;
+	*/
 }
 
 void buscaBinaria() {
 
 }
 
-void geraNumerosRandomicos(int vet[], int tamVetor)
-{
-	int i;
-	vet[i] = 1 + rand() % 100;
-}
+
 /*
 void buscaSequencial(int vet[], int tamVet)
 {
@@ -97,16 +123,6 @@ void buscaBinaria(int vet[], int tamVetor)
 }
 */
 
-void exibeVetor(int vet[], int tamVetor)
-{
-	int i;
-	cout << ("\nExibe vetor\n") << endl;
-	for (i = 0; i < tamVetor; i++)
-		cout << (vet[i]) << endl;
-
-	cout << ("\n\n");
-}
-
 //O valor lido deve ser um inteiro maior que zero
 int main()
 {
@@ -119,7 +135,7 @@ int main()
 
 	//Realizar as operações e imprimir resultado na tela
 	buscaSequencial(tamanhoDoVetor);
-	buscaBinaria(tamanhoDoVetor);
+	//buscaBinaria(tamanhoDoVetor);
 
 	return 0;
 }
