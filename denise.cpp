@@ -14,7 +14,7 @@ int vetorDeElementos[TAMANHO_MAXIMO_VETOR];
 void buscaSequencial() {
 
 	int valorBusca;
-	cout << "Busca sequencial. Informe o valor: ";
+	cout << "\nBusca sequencial. Informe o valor: ";
 	cin >> valorBusca;
 
 	clock_t tempoInicial, tempoFinal;
@@ -33,15 +33,16 @@ void buscaSequencial() {
 	}
 
 	tempoFinal = clock();
-	double intervaloDeTempo = (tempoFinal - tempoInicial) * 1000.0 / CLOCKS_PER_SEC;
+	double intervaloDeTempo = (double)(tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
 
 	printf("\nTempo de execucao da busca sequencial: %lf\n", intervaloDeTempo);
-	if (valorEncontrado == 0) printf("Valor nao encontrado.\n");
+	if (valorEncontrado == 0) printf("\nValor nao encontrado.\n");
 }
 
 void buscaBinaria() {
 
 	clock_t tempoInicial, tempoFinal;
+	
 	tempoInicial = clock();
 
 	//Ordenando vetor
@@ -65,11 +66,11 @@ void buscaBinaria() {
 	int valorBusca, meio, inicio = 0, fim = tamanhoDoVetor - 1;
 	int valorEncontrado = 0;
 
-	cout << "Busca binaria. Informe o valor: ";
+	cout << "\nBusca binaria. Informe o valor: ";
 	cin >> valorBusca;
 
 	inicio = 0; fim = tamanhoDoVetor - 1;
-
+	
 	while (inicio <= fim)
 	{
 		meio = (inicio + fim) / 2;
@@ -83,31 +84,38 @@ void buscaBinaria() {
 			inicio = meio + 1;
 		}
 		else {
-			cout << "Valor encontrado na posicao: " << meio << endl;
+			cout << "Valor encontrado na posicao: " << meio + 1 << endl;
 			valorEncontrado = 1;
 			break;
 		}
 	}
 
 	tempoFinal = clock();
-	double intervaloDeTempo = (tempoFinal - tempoInicial) * 1000.0 / CLOCKS_PER_SEC;
+	double intervaloDeTempo = (tempoFinal - tempoInicial) * 100000.0 / CLOCKS_PER_SEC;
 
-	printf("\nTempo de execucao da busca sequencial: %lf\n", intervaloDeTempo);
-	if (valorEncontrado == 0) printf("Valor nao encontrado.\n");
+	printf("\nTempo de execucao da busca binaria: %lf\n", intervaloDeTempo);
+	if (valorEncontrado == 0) printf("\nValor nao encontrado.\n");
 }
 
 int main()
 {
-	//Solicitar tamanho do vetor
-	cout << "Tamanho do vetor: ";
+
+#ifdef WIN32 //|| Win32 || win32 || Windows || WINDOWS || windows
+	system("cls");
+#endif
+
+#ifdef linux //|| LINUX || Linux || UNIX
+	system("tput reset");
+#endif
+
+	cout << "\nTamanho do vetor: ";
 	cin >> tamanhoDoVetor;
 
 	srand(tamanhoDoVetor);
 	for (int i = 0; i < tamanhoDoVetor; i++)
 	{
-		//Gerar números entre 0 e 100
 		vetorDeElementos[i] = rand() % 100;
-		cout << vetorDeElementos[i] << endl;
+		//cout << vetorDeElementos[i] << endl;
 	}
 
 	//Realizar as operações e imprimir resultado na tela
