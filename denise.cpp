@@ -1,18 +1,3 @@
-/*
-vetor de elementos inteiros de tamanho N
-a ser especificado na linha de comando
-
-o vetor de tamanho N deve ser gerado aleatoriamente, com valores entre 0 e 100
-
-Para implementar a pesquisa binária, o programa deve,
-primeiro, ordenar o vetor.
-Para tanto, pode ser usado qualquer algoritmo de ordenação.
-
-Os programas devem calcular e mostrar os tempos de execução da
-busca sequencial e da
-busca binária
-*/
-
 #include <iostream>
 #include <time.h>
 
@@ -56,55 +41,61 @@ void buscaSequencial() {
 
 void buscaBinaria() {
 
-}
+	clock_t tempoInicial, tempoFinal;
+	tempoInicial = clock();
 
-
-/*
-
-void ordenaVetor(int vet[], int tamVetor)
-{
-	int i, key, j;
-
-	for (i = 1; i < tamVetor; i++)
+	//Ordenando vetor
+	int menor = 0, aux = 0;
+	for (int i = 0; i < tamanhoDoVetor; i++)
 	{
-		key = vet[i];
-		j = i - 1;
-
-		while (j >= 0 && vet[j] > key)
+		menor = i;
+		for (int j = i + 1; j < tamanhoDoVetor; j++)
 		{
-			vet[j + 1] = vet[j];
-			j = j - 1;
+			if (vetorDeElementos[j] < vetorDeElementos[menor])
+			{
+				menor = j;
+			}
 		}
 
-		vet[j + 1] = key;
+		aux = vetorDeElementos[i];
+		vetorDeElementos[i] = vetorDeElementos[menor];
+		vetorDeElementos[menor] = aux;
 	}
-}
 
-void buscaBinaria(int vet[], int tamVetor)
-{
-	clock_t tempo;
+	int valorBusca, meio, inicio = 0, fim = tamanhoDoVetor - 1;
+	int valorEncontrado = 0;
 
-	int limiteInf = 0;
+	cout << "Busca binaria. Informe o valor: ";
+	cin >> valorBusca;
 
-	cout << ("BUSCA BINARIA\n") << endl; cout << ("Digite o número que deseja buscar: ") << endl; cin >> buscaNum;
+	inicio = 0; fim = tamanhoDoVetor - 1;
 
-	while ((limiteInf <= limiteSup) && (vet[meio] != buscaNum))
+	while (inicio <= fim)
 	{
-		meio = (int)((limiteInf + limiteSup) / 2);
+		meio = (inicio + fim) / 2;
 
-		if (buscaNum < vet[meio])
-			limiteSup = meio - 1;
-		else
-			limiteInf = meio + 1;
+		if (valorBusca < vetorDeElementos[meio])
+		{
+			fim = meio - 1;
+		}
+		else if (valorBusca > vetorDeElementos[meio])
+		{
+			inicio = meio + 1;
+		}
+		else {
+			cout << "Valor encontrado na posicao: " << meio << endl;
+			valorEncontrado = 1;
+			break;
+		}
 	}
 
-	cout << ("chegou aqui\n") << endl; if (vet[meio] == buscaNum) cout << ("Número %i encontrado na posição %i\n", buscaNum, meio) << endl; else cout << ("Número %i não encontrado\n", buscaNum) << endl;
+	tempoFinal = clock();
+	double intervaloDeTempo = (tempoFinal - tempoInicial) * 1000.0 / CLOCKS_PER_SEC;
 
-	cout << ("Tempo de exec. da busca binária foi: segs\n\n", (clock() - tempo) / (double)CLOCKS_PER_SEC) << endl; // sTempo final }
+	printf("\nTempo de execucao da busca sequencial: %lf\n", intervaloDeTempo);
+	if (valorEncontrado == 0) printf("Valor nao encontrado.\n");
 }
-*/
 
-//O valor lido deve ser um inteiro maior que zero
 int main()
 {
 	//Solicitar tamanho do vetor
@@ -120,8 +111,8 @@ int main()
 	}
 
 	//Realizar as operações e imprimir resultado na tela
-	buscaSequencial();
-	//buscaBinaria(tamanhoDoVetor);
+	buscaSequencial(); cout << endl;
+	buscaBinaria();
 
 	return 0;
 }
