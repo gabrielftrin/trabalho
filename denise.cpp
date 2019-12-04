@@ -4,7 +4,8 @@ a ser especificado na linha de comando
 
 o vetor de tamanho N deve ser gerado aleatoriamente, com valores entre 0 e 100
 
-Para implementar a pesquisa binária, o programa deve, primeiro, ordenar o vetor.
+Para implementar a pesquisa binária, o programa deve,
+primeiro, ordenar o vetor.
 Para tanto, pode ser usado qualquer algoritmo de ordenação.
 
 Os programas devem calcular e mostrar os tempos de execução da
@@ -13,56 +14,44 @@ busca binária
 */
 
 #include <iostream>
-#include <sys/time.h>
+#include <time.h>
+
+#define TAMANHO_MAXIMO_VETOR 1000
 
 using namespace std;
 
-void buscaSequencial(int tamanho) {
+//Declarar tamanho do vetor
+int tamanhoDoVetor;
 
-	//Criar vetor de elementos
-	int vetorDeElementos[tamanho];
+//Criar vetor de elementos
+int vetorDeElementos[TAMANHO_MAXIMO_VETOR];
 
-	srand(tamanho);
-	for (int i = 0; i < tamanho; i++)
-	{
-		//Gerar números entre 0 e 100
-		vetorDeElementos[i] = rand() % 100;
-	}
+void buscaSequencial() {
 
-	int valorBusca = -1;
-
+	int valorBusca;
 	cout << "Busca sequencial. Informe o valor: ";
 	cin >> valorBusca;
 
+	clock_t tempoInicial, tempoFinal;
+	int valorEncontrado = 0;
 
-	struct timeval tempoDeExecucao;
+	tempoInicial = clock();
 
-	//gettimeofday(&tempoDeExecucao, NULL);
+	for (int i = 0; i < tamanhoDoVetor; i++)
+	{
+		if (vetorDeElementos[i] == valorBusca)
+		{
+			cout << "O valor encontrado na posicao: " << (i + 1) << endl;
+			valorEncontrado = 1;
+			break;
+		}
+	}
 
-	//cout >> retorno;
+	tempoFinal = clock();
+	double intervaloDeTempo = (tempoFinal - tempoInicial) * 1000.0 / CLOCKS_PER_SEC;
 
-	/*
-		achou = 0;
-	struct timeval tv1, tv2;
-	double t1, t2;
-
-
-	// recupera o tempo inicial -
-	gettimeofday(&tv1, NULL);
-	t1 = (double)(tv1.tv_sec) + (double)(tv1.tv_usec) / 1000000.00;
-	for (i = 0; i < TAMANHO; i++) {
-		if (vetorDados[i] == valorBusca) {
-			cout << "Valor encontrado na posicao: " << i << endl;
-			achou = 1; break;
-		} // if
-	} // for
-	// recupera o tempo final -
-	gettimeofday(&tv2, NULL);
-	t2 = (double)(tv2.tv_sec) + (double)(tv2.tv_usec) / 1000000.00;
-	// calcula e imprime o tempo total de execucao
-	printf("\nO tempo de execucao foi: %lf\n", (t2 - t1));
-	if (!achou) cout << "Valor nao encontrado!\n" << endl;
-	*/
+	printf("\nTempo de execucao da busca sequencial: %lf\n", intervaloDeTempo);
+	if (valorEncontrado == 0) printf("Valor nao encontrado.\n");
 }
 
 void buscaBinaria() {
@@ -71,20 +60,6 @@ void buscaBinaria() {
 
 
 /*
-void buscaSequencial(int vet[], int tamVet)
-{
-	clock_t tempo;
-	int i, buscaNum;
-
-	cout << ("BUSCA SEQUENCIAL\n") << endl; cout << ("Digite o numero que deseja buscar: ") << endl; cin >> buscaNum;
-
-	i = 0; while ((i < tamVet) && (vet[i] != buscaNum)) i++;
-
-	if (vet[i] == buscaNum) cout << ("Número encontrado na posição %i\n", buscaNum, i) << endl;
-	else cout << ("Número não encontrado", buscaNum) << endl;
-
-	cout << ("Tempo de execucao da busca sequencial foi:", (clock() - tempo) / (double)CLOCKS_PER_SEC) << endl;
-}
 
 void ordenaVetor(int vet[], int tamVetor)
 {
@@ -132,39 +107,21 @@ void buscaBinaria(int vet[], int tamVetor)
 //O valor lido deve ser um inteiro maior que zero
 int main()
 {
-	//Declarar tamanho do vetor
-	int tamanhoDoVetor = -1;
-
 	//Solicitar tamanho do vetor
 	cout << "Tamanho do vetor: ";
-	//	cin >> tamanhoDoVetor;
+	cin >> tamanhoDoVetor;
 
-		//Realizar as operações e imprimir resultado na tela
-		//buscaSequencial(tamanhoDoVetor);
-		//buscaBinaria(tamanhoDoVetor);
+	srand(tamanhoDoVetor);
+	for (int i = 0; i < tamanhoDoVetor; i++)
+	{
+		//Gerar números entre 0 e 100
+		vetorDeElementos[i] = rand() % 100;
+		cout << vetorDeElementos[i] << endl;
+	}
 
-	struct timezone zona;
-	struct timeval tempo;
-	double tInicio;
-	double tFim;
-	int i;
-
-
-	gettimeofday(&tempo, &zona);
-
-	tInicio = tempo.tv_sec + (tempo.tv_usec / 1000000.0);
-
-	for (i = 0; i < 4; i++)
-		printf("Mostra algo na tela!!!\n");
-
-	//gettimeofday(&utime, NULL);
-
-	tFim = tempo.tv_sec + (tempo.tv_usec / 1000000.0);
-
-	printf("%.4lf - Tempo percorrido\n", tFim - tInicio);
-
-
-
+	//Realizar as operações e imprimir resultado na tela
+	buscaSequencial();
+	//buscaBinaria(tamanhoDoVetor);
 
 	return 0;
 }
